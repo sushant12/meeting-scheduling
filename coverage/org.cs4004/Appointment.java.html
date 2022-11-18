@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Unnamed Coverage Results</a> &gt; <a href="index.source.html" class="el_package">org.cs4004</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">package org.cs4004;
+
+import java.util.StringTokenizer;
+
+/**
+ * An appointment.
+ *
+ */
+public class Appointment {
+   private String description;
+   private AppointmentDate day;
+   private AppointmentTime from;
+   private AppointmentTime to;
+
+   /*
+    * Add additional code here
+    */
+
+<span class="nc" id="L19">   Appointment(String line) {</span>
+<span class="nc" id="L20">      String des = &quot;&quot;;</span>
+<span class="nc" id="L21">      StringTokenizer str = new StringTokenizer(line, &quot; &quot;);</span>
+<span class="nc" id="L22">      day = new AppointmentDate(str.nextToken());</span>
+<span class="nc" id="L23">      from = new AppointmentTime(str.nextToken());</span>
+<span class="nc" id="L24">      to = new AppointmentTime(str.nextToken());</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">      while (str.hasMoreTokens()) {</span>
+<span class="nc" id="L26">         des += str.nextToken() + &quot; &quot;;</span>
+      }
+<span class="nc" id="L28">      description = des;</span>
+<span class="nc" id="L29">   }</span>
+
+   public boolean dateCompare(AppointmentDate date) {
+<span class="nc bnc" id="L32" title="All 6 branches missed.">      if (date.getday() == day.getday() &amp;&amp; date.getmonth() == day.getmonth() &amp;&amp; date.getyear() == day.getyear()) {</span>
+<span class="nc" id="L33">         return true;</span>
+      }
+<span class="nc" id="L35">      return false;</span>
+   }
+
+   public String format() {
+<span class="nc" id="L39">      return &quot;Description: &quot; + description + &quot;\nDay: &quot; + day + &quot;\nFrom: &quot; + from + &quot;\nTo: &quot; + to;</span>
+   }
+
+   public String toString() {
+<span class="nc" id="L43">      return &quot;Description: &quot; + description + &quot;\nDay: &quot; + day + &quot;\nFrom: &quot; + from + &quot;\nTo: &quot; + to;</span>
+   }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

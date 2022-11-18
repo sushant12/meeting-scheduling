@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppointmentMenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Unnamed Coverage Results</a> &gt; <a href="index.source.html" class="el_package">org.cs4004</a> &gt; <span class="el_source">AppointmentMenu.java</span></div><h1>AppointmentMenu.java</h1><pre class="source lang-java linenums">package org.cs4004;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+/**
+   A menu for the appointment calendar system.
+*/
+public class AppointmentMenu
+{
+   private Scanner in;
+
+   /**
+      Constructs an AppointmentMenu object.
+   */
+   public AppointmentMenu()
+<span class="fc" id="L18">   {</span>
+<span class="fc" id="L19">       in = new Scanner(System.in);</span>
+<span class="fc" id="L20">   }</span>
+   
+   /**
+      Runs the system.
+   */
+   public void run()
+   {         
+<span class="fc" id="L27">      boolean more = true;</span>
+<span class="fc" id="L28">      AppointmentCalendar calendar = new AppointmentCalendar();</span>
+  
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">      while (more)</span>
+      {  
+<span class="fc" id="L32">         System.out.println(&quot;A)dd  C)ancel  S)how  Q)uit&quot;);</span>
+<span class="nc" id="L33">         String command = in.nextLine().toUpperCase();</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">         if (command.equals(&quot;A&quot;))</span>
+         {  
+<span class="nc" id="L37">            System.out.println(&quot;Appointment (Date From To Description)&quot;);</span>
+<span class="nc" id="L38">            String line = in.nextLine();</span>
+<span class="nc" id="L39">            Appointment a = new Appointment(line);</span>
+<span class="nc" id="L40">            calendar.add(a);</span>
+<span class="nc" id="L41">         }</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">         else if (command.equals(&quot;C&quot;))</span>
+         { 
+<span class="nc" id="L44">            System.out.println(&quot;Enter Appointment Date&quot;);</span>
+<span class="nc" id="L45">            String line = in.nextLine();</span>
+<span class="nc" id="L46">            AppointmentDate day = new AppointmentDate(line);</span>
+<span class="nc" id="L47">            Appointment a = getChoice(calendar.getAppointmentsForDay(day));</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (a != null)</span>
+<span class="nc" id="L49">               calendar.cancel(a);</span>
+<span class="nc" id="L50">         }</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">         else if (command.equals(&quot;S&quot;))</span>
+         { 
+<span class="nc" id="L53">            System.out.println(&quot;Date&quot;);</span>
+<span class="nc" id="L54">            String line = in.nextLine();</span>
+<span class="nc" id="L55">            AppointmentDate day = new AppointmentDate(line);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            for (Appointment appt : calendar.getAppointmentsForDay(day))</span>
+<span class="nc" id="L57">               System.out.println(appt.format());</span>
+<span class="nc" id="L58">         }</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">         else if (command.equals(&quot;Q&quot;))</span>
+         { 
+<span class="nc" id="L61">            more = false;</span>
+         }
+<span class="nc" id="L63">      }      </span>
+<span class="nc" id="L64">   }</span>
+
+   private Appointment getChoice(ArrayList&lt;Appointment&gt; choices)
+   {
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (choices.size() == 0) return null;</span>
+      while (true)
+      {
+<span class="nc" id="L71">         char c = 'A';</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">         for (Appointment choice : choices)</span>
+         {
+<span class="nc" id="L74">            System.out.println(c + &quot;) &quot; + choice.format()); </span>
+<span class="nc" id="L75">            c++;</span>
+<span class="nc" id="L76">         }</span>
+<span class="nc" id="L77">         String input = in.nextLine();</span>
+<span class="nc" id="L78">         int n = input.toUpperCase().charAt(0) - 'A';</span>
+<span class="nc bnc" id="L79" title="All 4 branches missed.">         if (0 &lt;= n &amp;&amp; n &lt; choices.size())</span>
+<span class="nc" id="L80">            return choices.get(n);</span>
+<span class="nc" id="L81">      }      </span>
+   }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
